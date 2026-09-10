@@ -11,33 +11,52 @@ export class ProdutoService {
 
   private api = 'http://127.0.0.1:8000/produtos';
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient
+  ) {}
 
   listar(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(`${this.api}/`);
+
+    return this.http.get<Produto[]>(
+      `${this.api}/`
+    );
+
   }
 
   buscarPorId(id: number): Observable<Produto> {
+
     return this.http.get<Produto>(
       `${this.api}/${id}`
     );
+
   }
 
   cadastrar(produto: Produto): Observable<Produto> {
+
     return this.http.post<Produto>(
       `${this.api}/`,
       produto
     );
+
   }
 
   atualizar(
     id: number,
-    produto: Partial<Produto>
+    produto: Produto
   ): Observable<Produto> {
+
     return this.http.put<Produto>(
       `${this.api}/${id}`,
       produto
     );
+
   }
 
+  excluir(id: number): Observable<void> {
+
+    return this.http.delete<void>(
+      `${this.api}/${id}`
+    );
+
+  }
 }
