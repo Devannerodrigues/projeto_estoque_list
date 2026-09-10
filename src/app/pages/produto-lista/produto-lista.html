@@ -1,0 +1,150 @@
+<div class="estoque-container">
+
+  <div class="cabecalho">
+
+    <div>
+      <h1>Estoque de Produtos</h1>
+
+      <p>
+        Consulte e altere os produtos cadastrados
+      </p>
+    </div>
+
+    <a
+      routerLink="/produto/novo"
+      class="btn-novo">
+
+      + Novo produto
+
+    </a>
+
+  </div>
+
+
+  <div class="acoes">
+
+    <button
+      type="button"
+      class="btn-atualizar"
+      (click)="listar()">
+
+      Atualizar lista
+
+    </button>
+
+  </div>
+
+
+  @if (listaProdutos().length === 0) {
+
+    <div class="vazio">
+
+      <h2>Nenhum produto encontrado</h2>
+
+      <p>
+        Ainda não existem produtos cadastrados no estoque.
+      </p>
+
+      <a
+        routerLink="/produto/novo"
+        class="btn-novo">
+
+        Adicionar primeiro produto
+
+      </a>
+
+    </div>
+
+  }
+
+
+  @if (listaProdutos().length > 0) {
+
+    <div class="tabela-container">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>ID</th>
+
+            <th>Produto</th>
+
+            <th>Descrição</th>
+
+            <th>Setor</th>
+
+            <th>Valor</th>
+
+            <th>Unidade</th>
+
+            <th>Estoque</th>
+
+            <th>Ações</th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          @for (item of listaProdutos(); track item.idproduto) {
+
+            <tr>
+
+              <td>
+                {{ item.idproduto }}
+              </td>
+
+              <td>
+                {{ item.produto }}
+              </td>
+
+              <td>
+                {{ item.descricao_produto }}
+              </td>
+
+              <td>
+                {{ item.idsetor }}
+              </td>
+
+              <td>
+                {{ item.valor_unitario | currency:'BRL' }}
+              </td>
+
+              <td>
+                {{ item.unidade }}
+              </td>
+
+              <td>
+                {{ item.estoque }}
+              </td>
+
+              <td>
+
+                <a
+                  [routerLink]="['/produto/editar', item.idproduto]"
+                  class="btn-editar">
+
+                  Alterar
+
+                </a>
+
+              </td>
+
+            </tr>
+
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  }
+
+</div>
