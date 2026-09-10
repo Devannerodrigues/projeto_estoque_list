@@ -1,0 +1,10 @@
+.estoque-container {
+    display: flex;
+}
+
+.cabecalho {
+    width: 100%;
+    max-width: 1000px;
+    min-height: 100px;
+    background-color: var(--cor-secundaria);
+}
