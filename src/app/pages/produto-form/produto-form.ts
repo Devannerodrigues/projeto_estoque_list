@@ -20,6 +20,7 @@ import { Produto } from '../../models/produto';
 export class ProdutoForm implements OnInit {
 
   produto: Produto = {
+    idproduto: 0,
     idsetor: 0,
     produto: '',
     descricao_produto: '',
